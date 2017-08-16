@@ -7,8 +7,8 @@ import Paper from 'material-ui/Paper';
 
 const Wrapper = styled(Paper)`
   display: flex;
-  padding: 10px;
-  margin: 8px;
+  padding: 8px;
+  margin-bottom: 8px;
 `;
 const From = styled.div`
   color: #333;

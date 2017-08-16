@@ -8,7 +8,7 @@ const Wrapper = styled(Paper)`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 10px 20px 10px 20px;
+  padding: 8px;
   margin-bottom: 8px;
 `;
 const Image = styled.img`

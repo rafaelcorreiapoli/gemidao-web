@@ -4,11 +4,14 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { bool, func } from 'prop-types';
 import CircularProgress from 'material-ui/CircularProgress';
 import Login from '../../pages/Login';
 import Purchase from '../../pages/Purchase';
 import History from '../../pages/History';
 import AuthenticatedLayout from '../../containers/AuthenticatedLayout';
+import TermsOfUse from '../../pages/TermsOfUse';
+import HowItWorks from '../../pages/HowItWorks';
 import Main from '@containers/Main';
 
 const AuthenticatedRoute = ({ component: Component, ...rest }) => (
@@ -17,13 +20,14 @@ const AuthenticatedRoute = ({ component: Component, ...rest }) => (
     render={props => (
       <AuthenticatedLayout>
         <Component {...props} />
-      </AuthenticatedLayout>
-  )}
+      </AuthenticatedLayout>)}
   />
 );
+AuthenticatedRoute.propTypes = {
+  component: func.isRequired,
+};
 
 const Routes = ({
-  isAuthenticated,
   loading,
 }) => {
   if (loading) {
@@ -35,12 +39,12 @@ const Routes = ({
   return (
     <Router>
       <Switch>
-        {/* <AuthenticatedLayout> */}
         <AuthenticatedRoute exact path="/" component={Main} />
         <AuthenticatedRoute exact path="/purchase" component={Purchase} />
         <AuthenticatedRoute exact path="/history" component={History} />
+        <AuthenticatedRoute exact path="/terms-of-use" component={TermsOfUse} />
+        <AuthenticatedRoute exact path="/how-it-works" component={HowItWorks} />
         <AuthenticatedRoute exact path="/welcome" component={() => <h1>Welcome</h1>} />
-        {/* </AuthenticatedLayout> */}
 
         <Route exact path="/login" component={Login} />
         <Route component={() => <h1>Not found</h1>} />
@@ -50,6 +54,10 @@ const Routes = ({
 
     </Router>
   );
+};
+
+Routes.propTypes = {
+  loading: bool.isRequired,
 };
 
 export default Routes;

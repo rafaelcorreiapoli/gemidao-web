@@ -2,12 +2,13 @@
 import { withStateHandlers, compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import AuthenticatedLayout from '../../components/AuthenticatedLayout';
+import { isAuthenticated, getUserName, getUserPicture } from '@modules/auth/selectors';
+import AuthenticatedLayout from '@components/AuthenticatedLayout';
 
 const mapStateToProps = state => ({
-  isAuthenticated: true,
-  userName: 'Rafael Ribeiro Correia',
-  userPicture: 'https://placehold.it/300x300',
+  isAuthenticated: isAuthenticated(state),
+  userName: getUserName(state),
+  userPicture: getUserPicture(state),
 });
 
 // export default AuthenticatedLayout;

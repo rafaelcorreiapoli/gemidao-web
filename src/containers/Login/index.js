@@ -1,14 +1,20 @@
 import { graphql, gql } from 'react-apollo';
 import { withStateHandlers, compose } from 'recompose';
 import { connect } from 'react-redux';
-
-import LoginForm from '../../components/LoginForm';
 import { withRouter } from 'react-router';
+import { loginWithFacebook } from '@modules/auth/actions';
+import LoginForm from '../../components/LoginForm';
 
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch, { history }) => ({
   onFacebookAccessTokenObtained(token) {
-    console.log(token);
+    dispatch(loginWithFacebook(token))
+    .then(() => {
+      console.log('aqui');
+      history.push({
+        pathname: '/',
+      });
+    });
   },
 });
 

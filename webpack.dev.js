@@ -25,6 +25,11 @@ module.exports = Merge(CommonConfig, {
   devtool: 'cheap-eval-source-map',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({ // <-- key to reducing React's size
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+      },
+    }),
   ],
   output: {
     path: BUILD_DIR,

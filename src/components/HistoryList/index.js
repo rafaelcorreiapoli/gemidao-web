@@ -4,10 +4,8 @@ import styled from 'styled-components';
 import HistoryListItem from '@components/HistoryListItem';
 
 const Wrapper = styled.div`
-  max-width: 600px;
-  margin: auto;
-`;
 
+`;
 const HistoryList = ({
   histories,
 

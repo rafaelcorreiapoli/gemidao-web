@@ -4,7 +4,7 @@ import { createLogger } from 'redux-logger';
 import { routerMiddleware } from 'react-router-redux';
 import createBrowserHistory from 'history/createBrowserHistory';
 import createRootReducer from './createRootReducer';
-
+import api from '../api';
 
 const logger = createLogger({
   predicate: (getState, action) => !/router|radar|popover/.test(action.type),
@@ -16,14 +16,14 @@ export default (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk, __DEV__ && logger, routerMiddleware(createBrowserHistory())].filter(Boolean);
+  const middleware = [thunk.withExtraArgument(api), __DEV__ && logger, routerMiddleware(createBrowserHistory())].filter(Boolean);
   // ======================================================
   // Store Enhancers
   // ======================================================
   const enhancers = [];
 
   let composeEnhancers = compose;
-
+  console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === 'development') {
     const composeWithDevToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
     if (typeof composeWithDevToolsExtension === 'function') {

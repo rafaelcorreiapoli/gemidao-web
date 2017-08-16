@@ -5,17 +5,25 @@ import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import { string, func, bool, number } from 'prop-types';
 import FacebookLogin from 'react-facebook-login';
+import Logo from '@components/Logo';
+import styled from 'styled-components';
 
+const Wrapper = styled(Paper)`
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+`;
+const OnBoardingText = styled.h3`
+  margin-top: 20px;
+  margin-bottom: 20px;
+`;
 const styles = {
-  container: {
-    padding: 40,
-  },
   buttonWrapper: {
     marginTop: 40,
     textAlign: 'right',
-  },
-  onboardingText: {
-    color: '#FFF',
   },
   facebookButton: {
     color: 'blue',
@@ -31,17 +39,23 @@ const LoginForm = ({
   setInputValue,
   onFacebookAccessTokenObtained,
 }) => (
-  <Paper style={styles.container}>
+  <Wrapper zDepth={5}>
     {loading &&
       <CircularProgress />
     }
     {error &&
       <div>{errorCode}</div>
     }
-    <span style={styles.onboardingText}>O gemidão blá blá blá</span>
+    <Logo />
+    <OnBoardingText>
+      Envie Gemidões do Zap para seus amigos como se fosse outra pessoa! <br />
+      Acompanhe o status da ligação em tempo real <br />
+      Compartilhe com os amigos para ganhar créditos
+    </OnBoardingText>
     <FacebookLogin
       appId="123254084969737"
       autoLoad
+      textButton="Entrar com Facebook"
       fields="name,email,picture"
       callback={(response) => {
         onFacebookAccessTokenObtained(response.accessToken);
@@ -50,31 +64,7 @@ const LoginForm = ({
       size={'small'}
       style={styles.facebookButton}
     />
-    {/* <TextField
-      name="email"
-      value={email}
-      fullWidth
-      onChange={e => setInputValue('email', e.target.value)}
-    />
-    <TextField
-      name="password"
-      value={password}
-      type="password"
-      fullWidth
-      onChange={e => setInputValue('password', e.target.value)}
-    />
-    <div style={styles.buttonWrapper}>
-      <RaisedButton
-        label="Login"
-        onTouchTap={() => {
-          loginWithEmail(email, password);
-        }}
-        disabled={loading}
-        secondary
-      />
-    </div> */}
-
-  </Paper>
+  </Wrapper>
 );
 
 LoginForm.propTypes = {
