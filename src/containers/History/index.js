@@ -1,21 +1,27 @@
 import { connect } from 'react-redux';
 import HistoryList from '@components/HistoryList';
+import { compose, lifecycle } from 'recompose';
+import * as actions from '@modules/history/actions';
+import * as selectors from '@modules/history/selectors';
 
-
-const fakeHistories = [{
-  from: '+5511943433330',
-  to: '+5511991446936',
-  date: new Date(),
-  answered: true,
-}, {
-  from: '+5511943433330',
-  to: '+5511991446936',
-  date: new Date(),
-  answered: false,
-}];
 
 const mapStateToProps = state => ({
-  histories: fakeHistories,
+  histories: selectors.getGemidoes(state),
+  loading: selectors.isLoading(state),
+  error: selectors.getError(state),
 });
 
-export default connect(mapStateToProps)(HistoryList);
+const mapDispatchToProps = dispatch => ({
+  fetchGemidoes() {
+    dispatch(actions.fetchGemidoes());
+  },
+});
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  lifecycle({
+    componentDidMount() {
+      this.props.fetchGemidoes();
+    },
+  }),
+)(HistoryList);

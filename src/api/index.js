@@ -6,6 +6,8 @@ const ENDPOINT = __DEV__
 ? 'http://192.168.1.40:3001'
 : 'https://gemidao-api.herokuapp.com';
 
+console.log(ENDPOINT);
+
 const fetchJson = (uri, options = {}) => fetch(uri, {
   ...options,
   headers: {
@@ -45,6 +47,7 @@ export default {
 
 
   createGemidao(from, to) {
+    console.log(from, to);
     return request('/gemidao', {
       method: 'POST',
       body: {

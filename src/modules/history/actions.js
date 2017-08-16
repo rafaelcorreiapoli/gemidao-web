@@ -23,7 +23,7 @@ export const fetchGemidoes = () => (dispatch, _, api) => {
 
   return api.getGemidoes()
   .then((gemidoes) => {
-    dispatch(fetchGemidoesSuccess(gemidoes));
+    dispatch(fetchGemidoesSuccess(gemidoes.data));
     return gemidoes;
   })
   .catch((err) => {

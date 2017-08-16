@@ -5,13 +5,13 @@ import {
 } from './actionTypes';
 
 const initialState = {
-  history: [],
+  gemidoes: [],
   loading: false,
   error: null,
 };
 
 export default (state = initialState, action) => {
-  switch (action) {
+  switch (action.type) {
     case FETCH_GEMIDOES:
       return {
         ...state,
@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        history: action.payload,
+        gemidoes: action.payload,
       };
     case FETCH_GEMIDOES_ERROR:
       return {

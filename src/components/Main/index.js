@@ -1,9 +1,8 @@
 import React from 'react';
-import { number, string, func, bool } from 'prop-types';
+import { string, func, bool } from 'prop-types';
 import styled from 'styled-components';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import GemidaoCounter from '@components/GemidaoCounter';
 import Paper from 'material-ui/Paper';
 
 const Wrapper = styled(Paper)`
@@ -14,27 +13,10 @@ const Wrapper = styled(Paper)`
   margin: auto;
 `;
 
-
-const GemidaoCounterWrapper = styled.div`
-  position: absolute;
-  right: 10px;
-  top: 10px;
-`;
-
-const MenuWrapper = styled.div`
-  position: absolute;
-  left: 10px;
-  top: 10px;
-`;
-
 const Title = styled.div`
   font-weight: 900;
   font-size: 20px;
   margin-bottom: 10px;
-  text-align: center;
-  margin-bottom: 40px;
-`;
-const BodyText = styled.div`
   text-align: center;
   margin-bottom: 40px;
 `;
@@ -48,45 +30,37 @@ const FormContainer = styled.div`
   height: 100%;
   margin-bottom: 40px;
 `;
-const Main = ({
-  gemidoesLeft,
-  userName,
-  userPicture,
-  senderNumber,
-  receiverNumber,
-  setInputValue,
-  sendGemidao,
-  loading,
 
+const Main = ({
+  sender,
+  receiver,
+  createGemidao,
+  loading,
+  setSender,
+  setReceiver,
 }) => (
   <Wrapper zDepth={1}>
-
     <Title>
       Nunca foi tão fácil trollar seus amigos
     </Title>
-    {/* <BodyText>
-      O Gemidão do Zap fará uma ligação a partir do número escolhido para o número da vítima.
-      Quando ela atender... <br />
-      <i>AAAWN OOOWN NHAAA AWWWWN AAAAAH... </i>
-    </BodyText> */}
     <FormContainer>
       <TextField
-        name="senderNumber"
+        name="sender"
         floatingLabelText="Número que vai ligar"
         floatingLabelFixed
-        value={senderNumber}
+        value={sender}
         fullWidth
-        onChange={e => setInputValue('senderNumber', e.target.value)}
+        onChange={e => setSender(e.target.value)}
       />
 
       <TextField
         underlineStyle={{ color: 'red' }}
-        name="receiverNumber"
+        name="receiver"
         floatingLabelText="Número que vai receber"
         floatingLabelFixed
-        value={receiverNumber}
+        value={receiver}
         fullWidth
-        onChange={e => setInputValue('receiverNumber', e.target.value)}
+        onChange={e => setReceiver(e.target.value)}
         style={{
           marginBottom: 30,
         }}
@@ -96,7 +70,7 @@ const Main = ({
 
     <RaisedButton
       label="Enviar Gemidão"
-      onTouchTap={sendGemidao}
+      onTouchTap={() => createGemidao(sender, receiver)}
       disabled={loading}
       secondary
       style={{ marginBottom: 20, height: 60 }}
@@ -107,31 +81,19 @@ const Main = ({
       tanto para o número que está discando quanto para o número que irá receber.
       Fique tranquilo e trolle a vontade ;)
     </Disclaimer>
-    {/* <RaisedButton
-      label="Obter mais Ligações"
-      onTouchTap={sendGemidao}
-      disabled={loading}
-      primary
-      style={{ marginBottom: 20 }}
-    /> */}
-
-
   </Wrapper>
 );
 
 Main.propTypes = {
-  gemidoesLeft: number.isRequired,
-  userPicture: string.isRequired,
-  userName: string.isRequired,
-  senderNumber: string,
-  receiverNumber: string,
-  sendGemidao: func.isRequired,
+  sender: string.isRequired,
+  receiver: string.isRequired,
+  createGemidao: func.isRequired,
   loading: bool.isRequired,
-  setInputValue: func.isRequired,
+  setSender: func.isRequired,
+  setReceiver: func.isRequired,
 };
 Main.defaultProps = {
-  senderNumber: '',
-  receiverNumber: '',
+
 };
 
 export default Main;

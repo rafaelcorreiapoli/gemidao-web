@@ -1,3 +1,4 @@
+/*  global localStorage */
 import { graphql, gql } from 'react-apollo';
 import { withStateHandlers, compose } from 'recompose';
 import { connect } from 'react-redux';
@@ -9,8 +10,8 @@ import LoginForm from '../../components/LoginForm';
 const mapDispatchToProps = (dispatch, { history }) => ({
   onFacebookAccessTokenObtained(token) {
     dispatch(loginWithFacebook(token))
-    .then(() => {
-      console.log('aqui');
+    .then((response) => {
+      localStorage.setItem('token', response.token);
       history.push({
         pathname: '/',
       });

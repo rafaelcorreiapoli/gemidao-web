@@ -5,6 +5,7 @@ import { routerMiddleware } from 'react-router-redux';
 import createBrowserHistory from 'history/createBrowserHistory';
 import createRootReducer from './createRootReducer';
 import api from '../api';
+import { fetchMe } from '@modules/auth/actions';
 
 const logger = createLogger({
   predicate: (getState, action) => !/router|radar|popover/.test(action.type),
@@ -49,6 +50,10 @@ export default (initialState = {}) => {
       const reducers = require('./createRootReducer').default;
       store.replaceReducer(reducers());
     });
+  }
+
+  if (localStorage.getItem('token')) {
+    store.dispatch(fetchMe());
   }
 
   return store;

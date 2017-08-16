@@ -26,6 +26,7 @@ export const loginWithFacebook = token => (dispatch, _, api) => {
   return api.loginWithFacebook(token)
   .then((data) => {
     dispatch(loginWithFacebookSuccess(data));
+    return data;
   })
   .catch((err) => {
     dispatch(loginWithFacebookError(err));
@@ -35,8 +36,9 @@ export const loginWithFacebook = token => (dispatch, _, api) => {
 const fetchMeStart = () => ({
   type: FETCH_ME,
 });
-const fetchMeSuccess = () => ({
+const fetchMeSuccess = ({ user }) => ({
   type: FETCH_ME_SUCCESS,
+  payload: user,
 });
 const fetchMeError = error => ({
   type: FETCH_ME_ERROR,
