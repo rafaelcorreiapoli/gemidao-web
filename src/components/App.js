@@ -6,7 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Hellossadadsss</h1>
+        <h1>Hellossadadsss v2ss fuck js</h1>
         <img src={img} />
 
       </div>

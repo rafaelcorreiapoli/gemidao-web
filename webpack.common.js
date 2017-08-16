@@ -5,33 +5,27 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const Visualizer = require('webpack-visualizer-plugin');
 
-const BUILD_DIR = path.resolve(__dirname, 'dist');
-const APP_DIR = path.resolve(__dirname, 'src');
-
 const config = {
-  entry: {
-    app: `${APP_DIR}/index.js`,
-    vendor: ['react', 'react-dom'],
-  },
   plugins: [
+    new webpack.NamedChunksPlugin(),
+    new webpack.NamedModulesPlugin(),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest'],
+      name: 'vendor',
+      minChunks: Infinity,
     }),
-    new Visualizer(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime',
+    }),
   ],
-  output: {
-    path: BUILD_DIR,
-    filename: '[name].[hash].js',
-    publicPath: '/',
-  },
   module: {
     loaders: [{
       test: /\.js$/,
       loader: 'babel-loader',
+      exclude: /node_modules/,
     }, {
       test: /\.css$/,
       loader: ['style-loader', 'css-loader'],

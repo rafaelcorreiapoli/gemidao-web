@@ -4,15 +4,34 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server -d --progress --colors --watch --port 3000 --open --env=dev",
+    "start": "webpack-dev-server -d --progress --colors --watch --open --env=dev",
     "build": "yarn run clean && webpack -p --progress --colors --profile --env=prod",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "deploy": "yarn run build && cp now.json ./dist && now ./dist && now alias"
   },
   "dependencies": {
+    "apollo-client": "^1.9.0-0",
+    "babel-plugin-module-resolver": "^2.7.1",
+    "history": "^4.6.3",
     "lodash": "^4.17.4",
+    "material-ui": "^0.18.6",
+    "moment": "^2.18.1",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
+    "react-apollo": "^1.4.3",
     "react-dom": "^15.6.1",
+    "react-facebook-login": "^3.6.2",
     "react-hot-loader": "next",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-router-redux": "^4.0.8",
+    "react-tap-event-plugin": "^2.0.1",
+    "recompose": "^0.24.0",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^2.1.2",
     "webpack": "^3.2.0"
   },
   "devDependencies": {
@@ -22,6 +41,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.16",
     "compression-webpack-plugin": "^0.4.0",
     "css-loader": "^0.28.4",
     "eslint": "^3.19.0",
@@ -31,13 +51,12 @@
     "eslint-plugin-react": "^7.1.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
     "rimraf": "^2.6.1",
     "style-loader": "^0.18.2",
     "webpack-bundle-analyzer": "^2.8.3",
     "webpack-dev-server": "^2.5.1",
     "webpack-merge": "^4.1.0",
-    "webpack-visualizer-plugin": "^0.1.11",
-    "clean-webpack-plugin": "^0.1.16",
-    "html-webpack-plugin": "^2.29.0"
+    "webpack-visualizer-plugin": "^0.1.11"
   }
 }

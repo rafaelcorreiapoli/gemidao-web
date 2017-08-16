@@ -1,4 +1,15 @@
 {
   "presets" : ["react", "stage-0", "es2015"],
-  "plugins": ["react-hot-loader/babel"]
+  "plugins": ["react-hot-loader/babel",
+    "transform-class-properties",
+    ["module-resolver", {
+      "root": ["./"],
+      "alias": {
+        "@components": "./src/components",
+        "@containers": "./src/containers",
+        "@modules": "./src/modules",
+        "@assets": "./src/assets",
+      }
+    }]
+  ]
 }

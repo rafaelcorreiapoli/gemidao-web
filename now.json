@@ -1,0 +1,5 @@
+{
+  "name": "savebob-web-admin",
+  "alias": "savebob",
+  "NODE_ENV": "production"
+}
