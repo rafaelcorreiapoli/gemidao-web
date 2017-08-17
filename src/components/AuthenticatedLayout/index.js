@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, bool, node, func } from 'prop-types';
+import { string, bool, node, func, number, object } from 'prop-types';
 import {
 Link,
 Redirect,
@@ -9,7 +9,6 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import GemidaoCounter from '@components/GemidaoCounter';
 import MenuItem from 'material-ui/MenuItem';
-import GemidaoIcon from '@components/GemidaoIcon';
 import Call from 'material-ui/svg-icons/communication/call';
 import History from 'material-ui/svg-icons/action/history';
 import PurchaseIcon from 'material-ui/svg-icons/action/shop';
@@ -110,8 +109,14 @@ const AuthenticatedLayout = ({
 AuthenticatedLayout.propTypes = {
   children: node.isRequired,
   logout: func.isRequired,
-  location: string.isRequired,
+  location: object.isRequired,
   isAuthenticated: bool.isRequired,
   loading: bool.isRequired,
+  gemidoesLeft: number.isRequired,
+  drawerOpen: bool.isRequired,
+  setDrawerOpen: func.isRequired,
+  toggleDrawer: func.isRequired,
+  userName: string.isRequired,
+  userPicture: string.isRequired,
 };
 export default AuthenticatedLayout;

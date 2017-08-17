@@ -1,20 +1,10 @@
 import React from 'react';
-import { arrayOf, shape, string, number, func } from 'prop-types';
+import { arrayOf, shape, string, number, func, bool } from 'prop-types';
 import PurchaseItem from '@components/PurchaseItem';
 import styled from 'styled-components';
 import RaisedButton from 'material-ui/RaisedButton';
 import OrSeparator from '@components/OrSeparator';
 import Paper from 'material-ui/Paper';
-import {
-  ShareButtons,
-  ShareCounts,
-  generateShareIcon,
-} from 'react-share';
-
-const {
-  FacebookShareButton,
-  TwitterShareButton,
-} = ShareButtons;
 
 const Wrapper = styled.div`
 
@@ -38,6 +28,7 @@ const Purchase = ({
   shareOnFacebook,
   sharedTodayOnFacebook,
   sharedTodayOnTwitter,
+  loadingConfirmFacebookShare,
 }) => (
   <Wrapper>
     {items.map(item => (
@@ -58,7 +49,7 @@ const Purchase = ({
         backgroundColor="#4C69BA"
         onTouchTap={shareOnFacebook}
         style={{ marginBottom: 10 }}
-        disabled={sharedTodayOnFacebook}
+        disabled={sharedTodayOnFacebook || loadingConfirmFacebookShare}
       />
       <ShareDisclaimer>{sharedTodayOnFacebook ? 'Você já compartilhou hoje' : 'Apenas 1 vez por dia'}</ShareDisclaimer>
     </ShareWrapper>
@@ -77,6 +68,9 @@ Purchase.propTypes = {
     amount: number.isRequired,
   })).isRequired,
   shareOnFacebook: func.isRequired,
+  sharedTodayOnFacebook: bool.isRequired,
+  sharedTodayOnTwitter: bool.isRequired,
+  loadingConfirmFacebookShare: bool.isRequired,
 };
 
 

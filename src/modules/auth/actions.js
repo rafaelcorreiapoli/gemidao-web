@@ -30,6 +30,7 @@ export const loginWithFacebook = token => (dispatch, _, api) => {
   })
   .catch((err) => {
     dispatch(loginWithFacebookError(err));
+    throw err;
   });
 };
 

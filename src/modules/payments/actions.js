@@ -9,7 +9,16 @@ import {
   CONFIRM_FACEBOOK_SHARE,
   CONFIRM_FACEBOOK_SHARE_SUCCESS,
   CONFIRM_FACEBOOK_SHARE_ERROR,
+  SHARE_ON_FACEBOOK_FOR_REWARD_START,
+  SHARE_ON_FACEBOOK_FOR_REWARD_END,
 } from './actionTypes';
+import * as authActions from '@modules/auth/actions';
+
+const uuidv4 = require('uuid/v4');
+
+const SHARE_URL = 'https://appgemidaodozap.com.br';
+
+const generateRandomUrl = () => `http://www.google.com.br/${uuidv4()}`;
 
 const fetchItemsStart = () => ({
   type: FETCH_ITEMS,
@@ -67,7 +76,6 @@ export const fetchCheckoutUrl = itemId => (dispatch, _, api) => {
 
 const confirmFacebookShareStart = () => ({
   type: CONFIRM_FACEBOOK_SHARE,
-
 });
 const confirmFacebookShareSuccess = response => ({
   type: CONFIRM_FACEBOOK_SHARE_SUCCESS,
@@ -92,5 +100,25 @@ export const confirmFacebookShare = url => (dispatch, _, api) => {
   })
   .catch((err) => {
     dispatch(confirmFacebookShareError(err));
+  });
+};
+
+export const shareOnFacebookForRewardStart = () => ({
+  type: SHARE_ON_FACEBOOK_FOR_REWARD_START,
+});
+export const confirmShareFacebookShareEnd = () => ({
+  type: SHARE_ON_FACEBOOK_FOR_REWARD_END,
+});
+
+export const shareOnFacebookForReward = () => (dispatch) => {
+  const randomUrl = generateRandomUrl();
+  dispatch(shareOnFacebookForRewardStart());
+  FB.ui({
+    method: 'share',
+    href: randomUrl,
+  }, () => {
+    dispatch(confirmFacebookShare(randomUrl))
+    .then(() => dispatch(authActions.fetchMe()))
+    .then(() => dispatch(confirmShareFacebookShareEnd()));
   });
 };

@@ -30,13 +30,9 @@ const styles = {
   },
 };
 const LoginForm = ({
-  email,
-  password,
-  loginWithEmail,
   loading,
   error,
   errorCode,
-  setInputValue,
   onFacebookAccessTokenObtained,
 }) => (
   <Wrapper zDepth={5}>
@@ -70,13 +66,10 @@ const LoginForm = ({
 );
 
 LoginForm.propTypes = {
-  email: string.isRequired,
-  password: string.isRequired,
-  loginWithEmail: func.isRequired,
   loading: bool.isRequired,
   error: bool.isRequired,
   errorCode: number,
-  setInputValue: func.isRequired,
+  onFacebookAccessTokenObtained: func.isRequired,
 };
 LoginForm.defaultProps = {
   errorCode: null,

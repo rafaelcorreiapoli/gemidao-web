@@ -7,3 +7,6 @@ export const getItems = state => state.payments.items
   imageUrl: gemidaoUrl,
 }))
 : [];
+
+
+export const isLoadingConfirmFacebookShare = state => state.payments.loadingConfirmFacebookShare;

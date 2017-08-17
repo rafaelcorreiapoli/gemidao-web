@@ -18,6 +18,9 @@ const mapDispatchToProps = (dispatch, { history }) => ({
       history.push({
         pathname: '/',
       });
+    })
+    .catch((err) => {
+      console.log('Erro');
     });
   },
 });

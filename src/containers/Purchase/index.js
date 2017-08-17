@@ -8,15 +8,12 @@ import * as selectors from '@modules/payments/selectors';
 import * as userSelectors from '@modules/auth/selectors';
 import * as authActions from '@modules/auth/actions';
 
-const uuidv4 = require('uuid/v4');
 
-const SHARE_URL = 'https://appgemidaodozap.com.br';
-
-const generateRandomUrl = () => `http://www.google.com.br/${uuidv4()}`;
 const mapStateToProps = state => ({
   items: selectors.getItems(state),
   sharedTodayOnTwitter: userSelectors.hasSharedTodayOnTwitter(state),
   sharedTodayOnFacebook: userSelectors.hasSharedTodayOnFacebook(state),
+  loadingConfirmFacebookShare: selectors.isLoadingConfirmFacebookShare(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -35,16 +32,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(actions.fetchItems());
   },
   shareOnFacebook() {
-    const randomUrl = generateRandomUrl();
-    FB.ui({
-      method: 'share',
-      href: randomUrl,
-    }, () => {
-      dispatch(actions.confirmFacebookShare(randomUrl))
-      .then(() => {
-        dispatch(authActions.fetchMe());
-      });
-    });
+    dispatch(actions.shareOnFacebookForReward());
   },
 });
 
