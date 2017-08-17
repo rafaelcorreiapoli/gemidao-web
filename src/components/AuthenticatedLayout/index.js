@@ -50,6 +50,7 @@ const AuthenticatedLayout = ({
   location,
   isAuthenticated,
   loading,
+  gemidoesLeft,
   drawerOpen,
   setDrawerOpen,
   toggleDrawer,
@@ -67,7 +68,7 @@ const AuthenticatedLayout = ({
         title="Gemidão do Zap!"
         titleStyle={{ textAlign: 'center' }}
         iconClassNameRight="muidocs-icon-navigation-expand-more"
-        iconElementRight={<GemidaoCounter />}
+        iconElementRight={<GemidaoCounter gemidoesLeft={gemidoesLeft} />}
         onLeftIconButtonTouchTap={toggleDrawer}
       />
       <Drawer open={drawerOpen} docked={false} onRequestChange={setDrawerOpen} containerStyle={{ backgroundColor: '#0A2E36' }}>

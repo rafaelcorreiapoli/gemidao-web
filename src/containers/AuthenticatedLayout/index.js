@@ -2,7 +2,7 @@
 import { withStateHandlers, compose } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { isAuthenticated, getUserName, getUserPicture, isLoading } from '@modules/auth/selectors';
+import { isAuthenticated, getUserName, getUserPicture, isLoading, getUserGemidoesLeft } from '@modules/auth/selectors';
 import AuthenticatedLayout from '@components/AuthenticatedLayout';
 
 const mapStateToProps = state => ({
@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
   userName: getUserName(state),
   userPicture: getUserPicture(state),
   loading: isLoading(state),
+  gemidoesLeft: getUserGemidoesLeft(state),
 });
 
 // export default AuthenticatedLayout;
@@ -19,12 +20,11 @@ export default compose(
   withStateHandlers(() => ({
     drawerOpen: false,
   }), {
-    logout: (_, { client, history }) => () => {
+    logout: (_, { history }) => () => {
       history.push({
         pathname: '/login',
       });
       localStorage.removeItem('token');
-      client.resetStore();
     },
     toggleDrawer: ({ drawerOpen }) => () => ({
       drawerOpen: !drawerOpen,

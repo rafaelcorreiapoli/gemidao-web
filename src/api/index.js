@@ -72,4 +72,13 @@ export default {
   getCheckoutUrl(itemId) {
     return request(`/payments/checkout-url?itemId=${itemId}`);
   },
+
+  confirmFacebookShare(url) {
+    return request('/social/confirm-fb-share', {
+      method: 'POST',
+      body: {
+        url,
+      },
+    });
+  },
 };

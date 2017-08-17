@@ -5,8 +5,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { loginWithFacebook } from '@modules/auth/actions';
 import LoginForm from '../../components/LoginForm';
+import * as selectors from '@modules/auth/selectors';
 
-
+const mapStateToProps = state => ({
+  loading: selectors.isLoading(state),
+});
 const mapDispatchToProps = (dispatch, { history }) => ({
   onFacebookAccessTokenObtained(token) {
     dispatch(loginWithFacebook(token))
@@ -45,5 +48,5 @@ export default compose(
       }),
     },
   ),
-  connect(null, mapDispatchToProps),
+  connect(mapStateToProps, mapDispatchToProps),
 )(LoginForm);

@@ -39,6 +39,7 @@ const ColumnWrapper = styled.div`
 
 const formatReal = number => String(number).replace('.', ',');
 const PurchaseItem = ({
+  _id,
   imageUrl,
   description,
   quantity,
@@ -52,7 +53,7 @@ const PurchaseItem = ({
       <Amount>R$ {formatReal(amount)}</Amount>
     </ColumnWrapper>
 
-    <PagSeguroButton onClick={onClick} />
+    <PagSeguroButton onClick={() => onClick(_id)} />
   </Wrapper>
 );
 

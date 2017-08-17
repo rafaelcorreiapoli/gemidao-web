@@ -52,17 +52,19 @@ const LoginForm = ({
       Acompanhe o status da ligação em tempo real <br />
       Compartilhe com os amigos para ganhar créditos
     </OnBoardingText>
-    <FacebookLogin
-      appId="123254084969737"
-      autoLoad
-      textButton="Entrar com Facebook"
-      fields="name,email,picture"
-      callback={(response) => {
-        onFacebookAccessTokenObtained(response.accessToken);
+    <RaisedButton
+      labelStyle={{ color: '#FFF' }}
+      label="Entrar com Facebook"
+      backgroundColor="#4C69BA"
+      onTouchTap={() => {
+        FB.login((response) => {
+          if (response.authResponse) {
+            onFacebookAccessTokenObtained(response.authResponse.accessToken);
+          }
+        });
       }}
-      cssClass="loginBtn loginBtn--facebook"
-      size={'small'}
-      style={styles.facebookButton}
+      style={{ marginBottom: 10 }}
+      disabled={loading}
     />
   </Wrapper>
 );
