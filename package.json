@@ -8,7 +8,8 @@
     "build": "yarn run clean && webpack -p --progress --colors --profile --env=prod",
     "clean": "rimraf dist",
     "deploy": "yarn run build && cp now.json ./dist && now ./dist && now alias",
-    "serve": "serve --single dist"
+    "serve": "serve --single dist",
+    "heroku-postbuild": "npm run build",
   },
   "dependencies": {
     "apollo-client": "^1.9.0-0",
@@ -35,9 +36,7 @@
     "serve": "^6.0.6",
     "styled-components": "^2.1.2",
     "uuid": "^3.1.0",
-    "webpack": "^3.2.0"
-  },
-  "devDependencies": {
+    "webpack": "^3.2.0",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",
     "babel-polyfill": "^6.23.0",
@@ -47,19 +46,21 @@
     "clean-webpack-plugin": "^0.1.16",
     "compression-webpack-plugin": "^0.4.0",
     "css-loader": "^0.28.4",
+    "file-loader": "^0.11.2",
+    "html-webpack-plugin": "^2.29.0",
+    "rimraf": "^2.6.1",
+    "style-loader": "^0.18.2",
+    "webpack-merge": "^4.1.0",
+    "extract-text-webpack-plugin": "^3.0.0"
+  },
+  "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.2",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^0.11.2",
-    "html-webpack-plugin": "^2.29.0",
-    "rimraf": "^2.6.1",
-    "style-loader": "^0.18.2",
     "webpack-bundle-analyzer": "^2.8.3",
     "webpack-dev-server": "^2.5.1",
-    "webpack-merge": "^4.1.0",
     "webpack-visualizer-plugin": "^0.1.11"
   }
 }
