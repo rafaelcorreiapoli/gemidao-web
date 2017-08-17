@@ -66,7 +66,6 @@ const AuthenticatedLayout = ({
       <AppBar
         title="Gemidão do Zap!"
         titleStyle={{ textAlign: 'center' }}
-        iconClassNameRight="muidocs-icon-navigation-expand-more"
         iconElementRight={<GemidaoCounter gemidoesLeft={gemidoesLeft} />}
         onLeftIconButtonTouchTap={toggleDrawer}
       />
@@ -116,7 +115,12 @@ AuthenticatedLayout.propTypes = {
   drawerOpen: bool.isRequired,
   setDrawerOpen: func.isRequired,
   toggleDrawer: func.isRequired,
-  userName: string.isRequired,
-  userPicture: string.isRequired,
+  userName: string,
+  userPicture: string,
+};
+
+AuthenticatedLayout.defaultProps = {
+  userName: null,
+  userPicture: null,
 };
 export default AuthenticatedLayout;

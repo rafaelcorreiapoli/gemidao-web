@@ -1,5 +1,5 @@
 {
-  "name": "savebob-web-admin",
-  "alias": "savebob",
+  "name": "appgemidaodozap-web",
+  "alias": "appgemidaodozap",
   "NODE_ENV": "production"
 }

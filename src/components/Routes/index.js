@@ -27,37 +27,24 @@ AuthenticatedRoute.propTypes = {
   component: func.isRequired,
 };
 
-const Routes = ({
-  loading,
-}) => {
-  if (loading) {
-    return (
-      <CircularProgress />
-    );
-  }
+const Routes = () => (
+  <Router>
+    <Switch>
+      <AuthenticatedRoute exact path="/" component={Main} />
+      <AuthenticatedRoute exact path="/purchase" component={Purchase} />
+      <AuthenticatedRoute exact path="/history" component={History} />
+      <AuthenticatedRoute exact path="/terms-of-use" component={TermsOfUse} />
+      <AuthenticatedRoute exact path="/how-it-works" component={HowItWorks} />
+      <AuthenticatedRoute exact path="/welcome" component={() => <h1>Welcome</h1>} />
 
-  return (
-    <Router>
-      <Switch>
-        <AuthenticatedRoute exact path="/" component={Main} />
-        <AuthenticatedRoute exact path="/purchase" component={Purchase} />
-        <AuthenticatedRoute exact path="/history" component={History} />
-        <AuthenticatedRoute exact path="/terms-of-use" component={TermsOfUse} />
-        <AuthenticatedRoute exact path="/how-it-works" component={HowItWorks} />
-        <AuthenticatedRoute exact path="/welcome" component={() => <h1>Welcome</h1>} />
+      <Route exact path="/login" component={Login} />
+      <Route component={() => <h1>Not found</h1>} />
 
-        <Route exact path="/login" component={Login} />
-        <Route component={() => <h1>Not found</h1>} />
-
-      </Switch>
+    </Switch>
 
 
-    </Router>
-  );
-};
+  </Router>
+);
 
-Routes.propTypes = {
-  loading: bool.isRequired,
-};
 
 export default Routes;

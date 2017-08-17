@@ -4,7 +4,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import { string, func, bool, number } from 'prop-types';
-import FacebookLogin from 'react-facebook-login';
 import Logo from '@components/Logo';
 import styled from 'styled-components';
 
