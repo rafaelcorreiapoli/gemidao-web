@@ -9,7 +9,7 @@
     "clean": "rimraf dist",
     "deploy": "yarn run build && cp now.json ./dist && now ./dist && now alias",
     "serve": "serve --single dist",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "apollo-client": "^1.9.0-0",
