@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server -d --progress --colors --watch --open --env=dev",
-    "build": "yarn run clean && webpack -p --progress --colors --profile --env=prod",
+    "build": "webpack -p --progress --colors --profile --env=prod",
     "clean": "rimraf dist",
     "deploy": "yarn run build && cp now.json ./dist && now ./dist && now alias",
     "serve": "serve --single dist",
