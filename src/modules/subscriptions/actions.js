@@ -7,7 +7,7 @@ import {
 } from './actionTypes';
 import hash from 'object-hash';
 
-export const subscribe = (publication, parameters) => ({
+export const subscribe = (publication, parameters, nextActionToCall) => ({
   type: SUBSCRIBE,
   payload: {
     message: 'subscribe',
@@ -15,6 +15,7 @@ export const subscribe = (publication, parameters) => ({
       publication,
       ...parameters,
     },
+    nextActionToCall,
     subscriptionId: hash({ publication, ...parameters }),
   },
   meta: { socket: true },

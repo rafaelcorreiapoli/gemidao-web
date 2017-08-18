@@ -5,7 +5,7 @@ import EventsListItem from '@components/EventsListItem';
 import CircularProgress from 'material-ui/CircularProgress';
 
 const Wrapper = styled.div`
-
+  align-self: stretch;
 `;
 const LoadingWrapper = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const LoadingWrapper = styled.div`
   height: 100%;
 `;
 const Message = styled.div`
-  
+
 `;
 const EventsList = ({
   events,

@@ -11,14 +11,16 @@ const Container = styled.div`
 `;
 const Description = styled.div`
   font-size: 32px;
+  margin-top: 20px;
+  margin-bottom: 40px;
 `;
 
 
 const descriptions = {
-  PREPARING: 'Preparando ligação...',
-  RINGING: 'O telefone está tocando...',
-  TALKING: 'Ligação atendida!',
-  FINISHED: 'Ligação concluída :)',
+  preparing: 'Preparando ligação...',
+  ringing: 'O telefone está tocando...',
+  answer: 'Ligação atendida!',
+  hangup: 'Ligação concluída :)',
 };
 const CallStatus = ({
   status = 'PREPARING',

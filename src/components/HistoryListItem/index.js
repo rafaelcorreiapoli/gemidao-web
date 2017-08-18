@@ -29,6 +29,7 @@ const Column = styled.div`
 `;
 
 const HistoryListItem = ({
+  _id,
   onClick,
   callId,
   from,
@@ -36,7 +37,7 @@ const HistoryListItem = ({
   date,
   answered,
 }) => (
-  <Wrapper zDepth={1} onClick={() => onClick(callId)}>
+  <Wrapper zDepth={1} onClick={() => onClick(_id)}>
     <DisplayAnswered answered={answered} />
 
     <Column>

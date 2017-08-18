@@ -6,13 +6,22 @@ import DisplayAnswered from '@components/DisplayAnswered';
 import Paper from 'material-ui/Paper';
 import DisplayCallStatus from '@components/DisplayCallStatus';
 
+const descriptions = {
+  preparing: 'Preparando ligação...',
+  ringing: 'O telefone está tocando...',
+  answer: 'Ligação atendida!',
+  hangup: 'Ligação concluída :)',
+};
+
 const Wrapper = styled(Paper)`
   cursor: pointer;
   display: flex;
   padding: 8px;
   margin-bottom: 8px;
+  align-items: center;
 `;
 const Event = styled.div`
+  margin-left: 10px;
   color: #333;
   flex-grow: 1;
 `;
@@ -28,8 +37,8 @@ const EventsListItem = ({
   date,
 }) => (
   <Wrapper zDepth={1}>
-    <DisplayCallStatus answered={answered} />
-    <Event>{event}</Event>
+    <DisplayCallStatus status={event} small />
+    <Event>{descriptions[event]}</Event>
     <DisplayDate>{moment(date).format('HH:mm:ss DD/MM/YYYY')}</DisplayDate>
   </Wrapper>
 );

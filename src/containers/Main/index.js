@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch, { history }) => ({
   createGemidao(from, to) {
     dispatch(actions.createGemidao(from, to))
     .then((response) => {
-      const callId = response.data.callId;
+      const callId = response.data._id;
       dispatch(callsActions.setCallStatus(callId, 'PREPARING'));
       history.push({
         pathname: `/calls/${callId}`,

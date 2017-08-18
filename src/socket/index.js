@@ -17,12 +17,18 @@ export const socketMiddleware = store => next => (action) => {
   if (socket && action.meta && action.meta.socket) {
     console.log(`Emitting ${action.payload.message}, ${action.payload.content}`);
     const subsId = action.payload.subscriptionId;
-    socket.emit(action.payload.message, action.payload.content, ({ error }) => {
+    socket.emit(action.payload.message, action.payload.content, ({ error, data }) => {
       if (action.type === 'SUBSCRIBE') {
         if (error) {
           store.dispatch(subscriptionsActions.subscribeError(subsId, error));
         } else {
           store.dispatch(subscriptionsActions.subscribeSuccess(subsId));
+          if (action.payload.nextActionToCall) {
+            store.dispatch({
+              type: action.payload.nextActionToCall,
+              payload: data,
+            });
+          }
         }
       } else if (action.type === 'UNSUBSCRIBE') {
         if (error) {

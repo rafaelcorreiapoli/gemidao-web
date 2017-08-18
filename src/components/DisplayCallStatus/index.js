@@ -8,33 +8,39 @@ import FinishedIcon from 'material-ui/svg-icons/communication/call-end';
 import PreparingIcon from 'material-ui/svg-icons/action/settings-remote';
 
 const Wrapper = styled(Paper)`
-  width: 200px;
-  height: 200px;
+  width: ${props => props.small ? 50 : 200}px;
+  height: ${props => props.small ? 50 : 200}px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: red;
-  margin-bottom: 20px;
+  ${''}
 `;
 
 const colors = {
-  PREPARING: '#3498db',
-  RINGING: '#9b59b6',
-  TALKING: '#2ecc71',
-  FINISHED: '#e67e22',
+  preparing: '#3498db',
+  ringing: '#9b59b6',
+  answer: '#2ecc71',
+  hangup: '#e67e22',
 };
 const icons = {
-  PREPARING: <PreparingIcon color="#FFF" style={{ width: 80, height: 80 }} />,
-  RINGING: <RingingIcon color="#FFF" style={{ width: 80, height: 80 }} />,
-  TALKING: <TalkingIcon color="#FFF" style={{ width: 80, height: 80 }} />,
-  FINISHED: <FinishedIcon color="#FFF" style={{ width: 80, height: 80 }} />,
+  preparing: <PreparingIcon color="#FFF" />,
+  ringing: <RingingIcon color="#FFF" />,
+  answer: <TalkingIcon color="#FFF" />,
+  hangup: <FinishedIcon color="#FFF" />,
 };
 
 const DisplayCallStatus = ({
   status,
+  small,
 }) => (
-  <Wrapper zDepth={2} style={{ backgroundColor: colors[status] }} circle>
-    {icons[status]}
+  <Wrapper zDepth={2} style={{ backgroundColor: colors[status] }} circle small={small}>
+    {icons[status] && React.cloneElement(icons[status], {
+      style: {
+        width: small ? 20 : 80,
+        height: small ? 20 : 80,
+      },
+    })}
   </Wrapper>
 );
 
