@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Redirect,
 } from 'react-router-dom';
 import { bool, func } from 'prop-types';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -40,7 +41,11 @@ const Routes = () => (
       <AuthenticatedRoute exact path="/welcome" component={() => <h1>Welcome</h1>} />
 
       <Route exact path="/login" component={Login} />
-      <Route component={() => <h1>Not found</h1>} />
+      <Route component={() => (<Redirect to={{
+        pathname: '/',
+      }}
+      />)}
+      />
 
     </Switch>
 

@@ -18,8 +18,8 @@ const uuidv4 = require('uuid/v4');
 
 const SHARE_URL = 'https://appgemidaodozap.com.br';
 
-const generateRandomUrl = () => `http://www.google.com.br/${uuidv4()}`;
-
+const generateRandomUrl = () => uuidv4();
+const getUrlForCode = code => `https://www.appgemidaodozap.com.br/${code}`;
 const fetchItemsStart = () => ({
   type: FETCH_ITEMS,
 
@@ -87,10 +87,10 @@ const confirmFacebookShareError = error => ({
   payload: error,
 });
 
-export const confirmFacebookShare = url => (dispatch, _, api) => {
+export const confirmFacebookShare = code => (dispatch, _, api) => {
   dispatch(confirmFacebookShareStart());
 
-  return api.confirmFacebookShare(url)
+  return api.confirmFacebookShare(code)
   .then((response) => {
     if (response.error) {
       throw new Error(response.error);
@@ -111,14 +111,21 @@ export const confirmShareFacebookShareEnd = () => ({
 });
 
 export const shareOnFacebookForReward = () => (dispatch) => {
-  const randomUrl = generateRandomUrl();
+  const code = generateRandomUrl();
+  const url = getUrlForCode(code);
   dispatch(shareOnFacebookForRewardStart());
+  console.log('sharing ', url);
   FB.ui({
     method: 'share',
-    href: randomUrl,
-  }, () => {
-    dispatch(confirmFacebookShare(randomUrl))
-    .then(() => dispatch(authActions.fetchMe()))
-    .then(() => dispatch(confirmShareFacebookShareEnd()));
+    href: url,
+  }, (response) => {
+    console.log('response ', response);
+    if (response !== undefined) {
+      dispatch(confirmFacebookShare(code))
+      .then(() => dispatch(authActions.fetchMe()))
+      .then(() => dispatch(confirmShareFacebookShareEnd()));
+    } else {
+      dispatch(confirmShareFacebookShareEnd());
+    }
   });
 };

@@ -16,6 +16,7 @@ import HowItWorks from 'material-ui/svg-icons/action/settings-applications';
 import TermsOfUse from 'material-ui/svg-icons/action/assignment';
 import Logout from 'material-ui/svg-icons/action/exit-to-app';
 import styled from 'styled-components';
+import GoogleAd from 'react-google-ad';
 
 const UserPicture = styled.img`
   width: 50px;
@@ -98,7 +99,7 @@ const AuthenticatedLayout = ({
       <ChildrenWrapper>
         {children}
       </ChildrenWrapper>
-
+      <GoogleAd client="ca-pub-8243767661290035" slot="8790777674" format="auto" test="on" />
     </div>
   );
 };

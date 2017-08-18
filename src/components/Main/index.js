@@ -38,6 +38,9 @@ const Main = ({
   loading,
   setSender,
   setReceiver,
+  gemidoesLeft,
+  goToPurchase,
+  shareOnFacebook,
 }) => (
   <Wrapper zDepth={1}>
     <Title>
@@ -50,6 +53,7 @@ const Main = ({
         floatingLabelFixed
         value={sender}
         fullWidth
+        disabled={gemidoesLeft <= 0}
         onChange={e => setSender(e.target.value)}
       />
 
@@ -60,6 +64,7 @@ const Main = ({
         floatingLabelFixed
         value={receiver}
         fullWidth
+        disabled={gemidoesLeft <= 0}
         onChange={e => setReceiver(e.target.value)}
         style={{
           marginBottom: 30,
@@ -68,21 +73,42 @@ const Main = ({
     </FormContainer>
 
 
-    <RaisedButton
-      label="Enviar Gemidão"
-      onTouchTap={() => createGemidao(sender, receiver)}
-      disabled={loading}
-      secondary
-      // backgroundColor="#2ecc71"
-      // labelColor="#FFF"
-      style={{ marginBottom: 20, height: 60 }}
-    />
+    {
+      gemidoesLeft > 0
+      ? <RaisedButton
+        label="Enviar Gemidão"
+        onTouchTap={() => createGemidao(sender, receiver)}
+        disabled={loading}
+        secondary
+        // backgroundColor="#2ecc71"
+        // labelColor="#FFF"
+        style={{ marginBottom: 20, height: 60 }}
+      />
+      : <RaisedButton
+        label="Obter mais Gemidões"
+        onTouchTap={goToPurchase}
+        disabled={loading}
+        secondary
+        // backgroundColor="#2ecc71"
+        // labelColor="#FFF"
+        style={{ marginBottom: 20, height: 60 }}
+      />
+    }
+
 
     <Disclaimer>
       Sua identidade será preservada,
       tanto para o número que está discando quanto para o número que irá receber.
       Fique tranquilo e trolle a vontade ;)
     </Disclaimer>
+
+    <RaisedButton
+      labelStyle={{ color: '#FFF' }}
+      label="Compartilhar no Facebook"
+      backgroundColor="#4C69BA"
+      onTouchTap={shareOnFacebook}
+      style={{ marginTop: 20 }}
+    />
   </Wrapper>
 );
 

@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   display: inline-flex;
   flex-direction: row;
   align-items: center;
+  padding-top: 5px;
 `;
 
 const GemidoesLeft = styled.div`

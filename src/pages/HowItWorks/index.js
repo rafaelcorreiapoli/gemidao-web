@@ -10,7 +10,7 @@ export default () => (
   <Wrapper zDepth={1}>
     <ul>
       <li>
-        How it works
+        Bruxaria!
       </li>
     </ul>
   </Wrapper>

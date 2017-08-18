@@ -4897,6 +4897,10 @@ react-event-listener@^0.4.5:
     prop-types "^15.5.4"
     warning "^3.0.0"
 
+react-google-ad@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-google-ad/-/react-google-ad-1.0.2.tgz#ae95e1dbc4c5fc5e1c7054c585e545cf10d0509d"
+
 react-hot-loader@next:
   version "3.0.0-beta.7"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-3.0.0-beta.7.tgz#d5847b8165d731c4d5b30d86d5d4716227a0fa83"

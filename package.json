@@ -37,6 +37,7 @@
     "react": "^15.6.1",
     "react-apollo": "^1.4.3",
     "react-dom": "^15.6.1",
+    "react-google-ad": "^1.0.2",
     "react-hot-loader": "next",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",

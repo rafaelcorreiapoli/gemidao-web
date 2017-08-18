@@ -73,11 +73,11 @@ export default {
     return request(`/payments/checkout-url?itemId=${itemId}`);
   },
 
-  confirmFacebookShare(url) {
+  confirmFacebookShare(code) {
     return request('/social/confirm-fb-share', {
       method: 'POST',
       body: {
-        url,
+        code,
       },
     });
   },

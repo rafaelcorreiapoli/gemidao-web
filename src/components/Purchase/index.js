@@ -38,8 +38,8 @@ const Purchase = ({
         {...item}
       />
     ))}
-    <OrSeparator />
-    <ShareWrapper zDepth={1}>
+    {/* <OrSeparator /> */}
+    {/* <ShareWrapper zDepth={1}>
       <ShareOnFacebookText>
         Compartilhe no Facebook para ganhar 1 Gemidão grátis!
       </ShareOnFacebookText>
@@ -52,7 +52,7 @@ const Purchase = ({
         disabled={sharedTodayOnFacebook || loadingConfirmFacebookShare}
       />
       <ShareDisclaimer>{sharedTodayOnFacebook ? 'Você já compartilhou hoje' : 'Apenas 1 vez por dia'}</ShareDisclaimer>
-    </ShareWrapper>
+    </ShareWrapper> */}
 
   </Wrapper>
 );
