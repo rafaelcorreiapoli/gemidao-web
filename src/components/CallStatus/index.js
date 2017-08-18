@@ -3,6 +3,7 @@ import { string, arrayOf, shape, object, bool } from 'prop-types';
 import styled from 'styled-components';
 import DisplayCallStatus from '@components/DisplayCallStatus';
 import EventsList from '@components/EventsList';
+import LoadingDots from '@components/LoadingDots';
 
 const Container = styled.div`
   display: flex;
@@ -17,13 +18,14 @@ const Description = styled.div`
 
 
 const descriptions = {
-  preparing: 'Preparando ligação...',
-  ringing: 'O telefone está tocando...',
+  preparing: 'Preparando ligação',
+  ringing: 'O telefone está tocando!',
   answer: 'Ligação atendida!',
   hangup: 'Ligação concluída :)',
 };
+
 const CallStatus = ({
-  status = 'PREPARING',
+  status = 'preparing',
   events,
   loading,
   errorDescription,
@@ -38,7 +40,7 @@ const CallStatus = ({
   return (
     <Container>
       <DisplayCallStatus status={status} />
-      <Description>{descriptions[status]}</Description>
+      <Description>{descriptions[status]} {status === 'preparing' && <LoadingDots />}</Description>
       <EventsList
         events={events}
       />
