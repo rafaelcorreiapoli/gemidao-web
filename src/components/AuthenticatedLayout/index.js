@@ -39,7 +39,6 @@ const ChildrenWrapper = styled.div`
   max-width: 600px;
   margin: auto;
   padding: 10px;
-  height: 100%;
 `;
 
 const StyledMenuItem = props => <MenuItem {...props} style={{ color: '#FFF' }} />;
