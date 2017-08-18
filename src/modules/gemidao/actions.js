@@ -4,6 +4,7 @@ import {
   CREATE_GEMIDAO_ERROR,
   SET_SENDER,
   SET_RECEIVER,
+  SET_CALL_STATUS,
 } from './actionTypes';
 
 export const setSender = senderNumber => ({

@@ -7,6 +7,9 @@ import createRootReducer from './createRootReducer';
 import api from '../api';
 import { fetchMe } from '@modules/auth/actions';
 
+import socketApp, { socketMiddleware, socket } from '../socket';
+
+
 const logger = createLogger({
   predicate: (getState, action) => !/router|radar|popover/.test(action.type),
 });
@@ -17,7 +20,7 @@ export default (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [thunk.withExtraArgument(api), __DEV__ && logger, routerMiddleware(createBrowserHistory())].filter(Boolean);
+  const middleware = [socketMiddleware, thunk.withExtraArgument(api), __DEV__ && logger, routerMiddleware(createBrowserHistory())].filter(Boolean);
   // ======================================================
   // Store Enhancers
   // ======================================================
@@ -55,6 +58,8 @@ export default (initialState = {}) => {
   if (localStorage.getItem('token')) {
     store.dispatch(fetchMe());
   }
+
+  socketApp(store);
 
   return store;
 };

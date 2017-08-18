@@ -73,6 +73,8 @@ const Main = ({
       onTouchTap={() => createGemidao(sender, receiver)}
       disabled={loading}
       secondary
+      // backgroundColor="#2ecc71"
+      // labelColor="#FFF"
       style={{ marginBottom: 20, height: 60 }}
     />
 

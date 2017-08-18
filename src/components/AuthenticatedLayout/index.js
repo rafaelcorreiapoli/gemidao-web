@@ -69,7 +69,7 @@ const AuthenticatedLayout = ({
         iconElementRight={<GemidaoCounter gemidoesLeft={gemidoesLeft} />}
         onLeftIconButtonTouchTap={toggleDrawer}
       />
-      <Drawer open={drawerOpen} docked={false} onRequestChange={setDrawerOpen} containerStyle={{ backgroundColor: '#0A2E36' }}>
+      <Drawer open={drawerOpen} docked={false} onRequestChange={setDrawerOpen} containerStyle={{ backgroundColor: '#27ae60' }}>
         <DrawerHeader>
           <UserPicture src={userPicture} />
           <UserName>{userName}</UserName>

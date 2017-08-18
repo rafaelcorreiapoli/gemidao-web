@@ -7,7 +7,9 @@ import Routes from '../../components/Routes';
 
 const myTheme = getMuiTheme({
   palette: {
-    primary1Color: '#0A2E36',
+    // primary1Color: '#0A2E36',
+    primary1Color: '#27ae60',
+    secondary1Color: '#2ecc71',
     accent1Color: '#27ae60',
     // textColor: '#FFF',
   },

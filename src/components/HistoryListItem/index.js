@@ -1,11 +1,12 @@
 import React from 'react';
-import { string, bool, object } from 'prop-types';
+import { func, string, bool, object } from 'prop-types';
 import styled from 'styled-components';
 import moment from 'moment';
 import DisplayAnswered from '@components/DisplayAnswered';
 import Paper from 'material-ui/Paper';
 
 const Wrapper = styled(Paper)`
+  cursor: pointer;
   display: flex;
   padding: 8px;
   margin-bottom: 8px;
@@ -28,12 +29,14 @@ const Column = styled.div`
 `;
 
 const HistoryListItem = ({
+  onClick,
+  callId,
   from,
   to,
   date,
   answered,
 }) => (
-  <Wrapper zDepth={1}>
+  <Wrapper zDepth={1} onClick={() => onClick(callId)}>
     <DisplayAnswered answered={answered} />
 
     <Column>
@@ -47,6 +50,8 @@ const HistoryListItem = ({
   </Wrapper>
 );
 HistoryListItem.propTypes = {
+  onClick: func.isRequired,
+  callId: string.isRequired,
   from: string.isRequired,
   to: string.isRequired,
   date: object.isRequired,

@@ -14,6 +14,7 @@ const LoadingWrapper = styled.div`
   height: 100%;
 `;
 const HistoryList = ({
+  onClickCall,
   histories,
   loading,
 }) => {
@@ -29,6 +30,7 @@ const HistoryList = ({
     <Wrapper>
       {histories.map(history => (
         <HistoryListItem
+          onClick={onClickCall}
           key={history._id}
           {...history}
         />

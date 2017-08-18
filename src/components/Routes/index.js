@@ -13,6 +13,7 @@ import AuthenticatedLayout from '../../containers/AuthenticatedLayout';
 import TermsOfUse from '../../pages/TermsOfUse';
 import HowItWorks from '../../pages/HowItWorks';
 import Main from '@containers/Main';
+import CallTrack from '../../pages/CallTrack';
 
 const AuthenticatedRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -35,6 +36,7 @@ const Routes = () => (
       <AuthenticatedRoute exact path="/history" component={History} />
       <AuthenticatedRoute exact path="/terms-of-use" component={TermsOfUse} />
       <AuthenticatedRoute exact path="/how-it-works" component={HowItWorks} />
+      <AuthenticatedRoute exact path="/calls/:callId" component={CallTrack} />
       <AuthenticatedRoute exact path="/welcome" component={() => <h1>Welcome</h1>} />
 
       <Route exact path="/login" component={Login} />

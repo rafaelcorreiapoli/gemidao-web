@@ -4,6 +4,7 @@ import {
   CREATE_GEMIDAO_ERROR,
   SET_SENDER,
   SET_RECEIVER,
+  SET_CALL_STATUS,
 } from './actionTypes';
 
 
@@ -12,6 +13,7 @@ const initialState = {
   error: false,
   sender: '',
   receiver: '',
+  callStatus: null,
 };
 
 export default (state = initialState, action) => {
@@ -26,6 +28,8 @@ export default (state = initialState, action) => {
       return { ...state, sender: action.payload };
     case SET_RECEIVER:
       return { ...state, receiver: action.payload };
+    case SET_CALL_STATUS:
+      return { ...state, callStatus: action.payload };
     default:
       return state;
   }

@@ -5,6 +5,7 @@ state.history.gemidoes.map(gemidao => ({
   _id: gemidao._id,
   from: gemidao.from,
   to: gemidao.to,
+  callId: gemidao.callId,
   answered: gemidao.eventLog.some(event => event.event === 'answer'),
   date: moment(gemidao.date),
 }))

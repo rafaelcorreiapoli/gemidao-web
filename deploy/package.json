@@ -8,5 +8,21 @@
   },
   "scripts": {
     "now-start": "serve --single dist"
+  },
+  "now": {
+    "name": "appgemidaodozap",
+    "alias": [
+      "appgemidaodozap.com",
+      "www.appgemidaodozap.com",
+      "appgemidaodozap.com.br",
+      "www.appgemidaodozap.com.br"
+    ],
+    "env": {
+      "NODE_ENV": "production"
+    },
+    "files": [
+      "dist",
+      "package.json"
+    ]
   }
 }
