@@ -34,3 +34,5 @@ if (module.hot) {
     );
   });
 }
+
+console.log('update');

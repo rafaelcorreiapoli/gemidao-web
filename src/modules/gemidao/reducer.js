@@ -1,3 +1,5 @@
+import VMasker from 'vanilla-masker';
+
 import {
   CREATE_GEMIDAO,
   CREATE_GEMIDAO_SUCCESS,
@@ -6,6 +8,15 @@ import {
   SET_RECEIVER,
   SET_CALL_STATUS,
 } from './actionTypes';
+
+
+const celular = (value) => {
+  if (!value) return '';
+  if (value.length > 14) {
+    return VMasker.toPattern(value, '(99) 99999-9999');
+  }
+  return VMasker.toPattern(value, '(99) 9999-9999');
+};
 
 
 const initialState = {
@@ -25,9 +36,9 @@ export default (state = initialState, action) => {
     case CREATE_GEMIDAO_ERROR:
       return { ...state, loading: false, error: action.payload };
     case SET_SENDER:
-      return { ...state, sender: action.payload };
+      return { ...state, sender: celular(action.payload) };
     case SET_RECEIVER:
-      return { ...state, receiver: action.payload };
+      return { ...state, receiver: celular(action.payload) };
     case SET_CALL_STATUS:
       return { ...state, callStatus: action.payload };
     default:
